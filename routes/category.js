@@ -1,6 +1,6 @@
 //для обработки запрсов клиента
 const express = require('express');
-const controller = require('../controllers/auth');
+const controller = require('../controllers/category');
 const router = express.Router();
 
 //localhost:4000/api/auth/login
