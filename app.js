@@ -1,4 +1,5 @@
 const express = require('express')  //упрощает разработку back-end (маршруты, mvc)
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 //const cors = require('coes')    //если клиент находится на другом доменне, то мы все равно сможем отвечать нашим серверам
 //const morgan = require('morgan')    //красивое логирование запросов(то что происходит с сервером в данный момент)
@@ -7,7 +8,12 @@ const analyticsRoutes = require('./routes/analytics');
 const categoryRoutes = require('./routes/category');
 const orderRoutes = require('./routes/order');
 const positionRoutes = require('./routes/postition');
+const keys = require('./config/keys')
 const app = express();
+
+mongoose.connect(keys.mongoURI)
+    .then(() => console.log('MongoDB connected.'))
+    .catch(error  => console.log(error))
 
 app.use(require('cors')())
 app.use(bodyParser.urlencoded({extended: true}))
