@@ -2,6 +2,6 @@ declare var M
 
 export class MaterialService {
   static toast(message: string){
-    M.toast()
+    M.toast({html: message})
   }
 }

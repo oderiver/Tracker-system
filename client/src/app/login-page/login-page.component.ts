@@ -12,13 +12,12 @@ import {MaterialService} from "../shared/classes/material.service";
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
 
-  form: FormGroup
-  aSub: Subscription  //отвечает за отсутствие утечки памяти
+  form: FormGroup;
+  aSub: Subscription;  //отвечает за отсутствие утечки памяти
 
   constructor(private auth: AuthService,
               private  router: Router,
               private route: ActivatedRoute) {
-
   }
 
   ngOnInit() {
@@ -29,11 +28,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
     this.route.queryParams.subscribe((params: Params) => {
       if(params['registered']) {
-        MaterialService.toast('Теперь вы можете войти в систему используя свои данные')
+        MaterialService.toast('Теперь вы можете войти в систему используя свои данные');
       } else if(params['accessDenied']){
-        MaterialService.toast('Для начала авторизируйтесь в системе')
+        MaterialService.toast('Для начала авторизируйтесь в системе');
       } else if (params['sessionFailed']){
-        MaterialService.toast('Пожалуйста, войдите в систему заново')
+        MaterialService.toast('Пожалуйста, войдите в систему заново');
       }
     })
   }
@@ -46,11 +45,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   onSubmit(){
     this.form.disable()
+
     this.aSub = this.auth.login(this.form.value).subscribe(
-      () => this.router.navigate(['overview']),
+      () => this.router.navigate(['/overview']),
       error => {
-        MaterialService.toast(error.error.message)
-        console.warn(error)
+        MaterialService.toast(error.error.message);
         this.form.enable()
       }
     )
