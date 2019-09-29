@@ -10,7 +10,7 @@ import {MaterialService} from "../../classes/material.service";
 })
 export class SiteLayoutComponent implements AfterViewInit {
 
-  @ViewChild('floating') floatingRef: ElementRef
+  @ViewChild('floating', {static: false}) floatingRef: ElementRef
 
   links = [
     {url: '/overview', name: 'Обзор'},
