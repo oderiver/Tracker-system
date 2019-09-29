@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriesServices{
+export class CategoriesService{
   constructor(private http: HttpClient){
   }
 

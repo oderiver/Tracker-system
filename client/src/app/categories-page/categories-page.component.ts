@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CategoriesServices} from "../shared/services/categories.services";
+import {CategoriesService} from "../shared/services/categories.services";
 import {Category} from "../shared/interfaces";
 import {Observable} from "rxjs";
 
@@ -12,8 +12,7 @@ export class CategoriesPageComponent implements OnInit {
 
   categories$: Observable<Category[]>
 
-  constructor(private categoriesService: CategoriesServices) {
-
+  constructor(private categoriesService: CategoriesService) {
   }
 
   ngOnInit() {
