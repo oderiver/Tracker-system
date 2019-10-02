@@ -8,7 +8,7 @@ import {OrderService} from "./order.service";
   selector: 'app-order-page',
   templateUrl: './order-page.component.html',
   styleUrls: ['./order-page.component.css'],
-  providers: ['OrderService']
+  providers: [OrderService]
 })
 export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
