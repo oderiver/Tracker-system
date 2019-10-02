@@ -1,5 +1,4 @@
 import {ElementRef} from "@angular/core";
-import {duration} from "moment";
 
 export interface MaterialInstance {
   open?(): void
