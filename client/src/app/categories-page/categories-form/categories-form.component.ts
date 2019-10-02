@@ -25,26 +25,26 @@ export class CategoriesFormComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private categoriesService: CategoriesService,
               private router: Router) {
-
   }
 
   ngOnInit() {
     this.form = new FormGroup({
       name: new FormControl(null, Validators.required)
     })
-    //this.route.params.subscribe((params: Params) => {
-    //  if(params['id']){
-        //Мы редактируем форму
-    //    this.isNew = false
-    //  }
-    //})
+
+    // this.route.params.subscribe((params: Params) => {
+    //   if(params['id']){
+    //     //Мы редактируем форму
+    //     this.isNew = false
+    //   }
+    // })
 
     this.form.disable()
 
     this.route.params
       .pipe(
         switchMap(
-          (params, Params) => {
+          (params: Params) => {
             if(params['id']){
               this.isNew = false
               return this.categoriesService.getById(params['id'])
@@ -59,9 +59,9 @@ export class CategoriesFormComponent implements OnInit {
           if(category){
             this.category = category
             this.form.patchValue({
-              name: category.name
+              name: this.category.name
             })
-            this.imagePreview = category.imageSrc
+            this.imagePreview = this.category.imageSrc
             MaterialService.updateTextInputs()
           }
           this.form.enable()
@@ -100,8 +100,8 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   onSubmit(){
-    let obs$
-    this.form.disable()
+    let obs$;
+    this.form.disable();
 
     if(this.isNew){
       obs$ = this.categoriesService.create(this.form.value.name, this.image)
@@ -110,15 +110,15 @@ export class CategoriesFormComponent implements OnInit {
     }
 
     obs$.subscribe(
-      category => {
-        this.category = category
-        MaterialService.toast('Изменения сохранены')
-        this.form.enable()
-      },
-      error => {
-        MaterialService.toast(error.error.message)
-        this.form.enable()
-    }
+        category => {
+          this.category = category;
+          MaterialService.toast('Изменения сохранены.');
+          this.form.enable()
+        },
+        error => {
+          MaterialService.toast(error.error.message);
+          this.form.enable()
+        }
     )
   }
 

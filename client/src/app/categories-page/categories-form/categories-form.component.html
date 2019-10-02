@@ -4,16 +4,16 @@
     <i class="material-icons">keyboard_arrow_right</i>
     {{isNew ? 'Добавить': 'Редактировать'}} категорию
   </h4>
-  <span>
-            <button
-              *ngIf="!isNew"
-              class="btn btn-small red"
-              (click)="deleteCategory()"
+  <span *ngIf="!isNew">
+    <button
+      class="btn btn-small red"
+      (click)="deleteCategory()"
+      [disabled] = "form.disabled"
 
-            >
-              <i class="material-icons">delete</i>
-            </button>
-          </span>
+    >
+      <i class="material-icons">delete</i>
+    </button>
+  </span>
 </div>
 
 <div class="row">
@@ -57,7 +57,7 @@
     <div>
       <button
         type="submit"
-        [disabled]="form.invalid || form.disabled"
+        [disabled]='form.invalid || form.disabled'
         class="waves-effect waves-light btn"
       >
         Сохранить изменения
@@ -68,32 +68,97 @@
   <div class="col s12 l4 center">
     <img
       class="responsive-img h200"
-      [src] = 'imagePreview'
-      *ngIf="imagePreview"
+      [src] ="imagePreview"
+      *ngIf ="imagePreview"
     >
   </div>
 </div>
 
-<div class="row">
-  <div class="col s12">
-    <div class="page-subtitle">
-      <h4>Позиции:</h4>
-      <button class="waves-effect waves-light btn grey darken-1 btn-small modal-trigger" data-target="create-modal">
-        Добавить позицию
-      </button>
-    </div>
+<app-positions-form
+  *ngIf="category?._id"
+  [categoryId]="category._id"
+>
+</app-positions-form>
 
-    <div class="collection">
-      <a class="collection-item collection-item-icon">
-                    <span>
-                        Кофе <strong>20 руб.</strong>
-                    </span>
-        <span>
-                        <i class="material-icons">delete</i>
-                    </span>
-      </a>
-    </div>
-  </div>
-</div>
 
-<!--<app-positions-form></app-positions-form>-->
+
+
+<!--<div class="page-title">-->
+<!--  <h4>-->
+<!--    <a routerLink="/categories">Категории</a>-->
+<!--    <i class="material-icons">keyboard_arrow_right</i>-->
+<!--    {{isNew ? 'Добавить' : 'Редактировать'}}-->
+<!--  </h4>-->
+<!--  <span *ngIf="!isNew">-->
+<!--    <button-->
+<!--      class="btn btn-small red"-->
+<!--      (click)="deleteCategory()"-->
+<!--      [disabled]="form.disabled"-->
+<!--    >-->
+<!--      <i class="material-icons">delete</i>-->
+<!--    </button>-->
+<!--  </span>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+<!--  <form class="col s12 l6" [formGroup]="form" (ngSubmit)="onSubmit()">-->
+<!--    <div class="input-field">-->
+<!--      <input-->
+<!--        id="name"-->
+<!--        type="text"-->
+<!--        formControlName="name"-->
+<!--        [ngClass]="{'invalid': form.get('name').invalid && form.get('name').touched}"-->
+<!--      >-->
+<!--      <label for="name">Название</label>-->
+<!--      <span-->
+<!--        class="helper-text red-text"-->
+<!--        *ngIf="form.get('name').invalid && form.get('name').touched"-->
+<!--      >-->
+<!--        <span *ngIf="form.get('name').errors['required']">-->
+<!--          Имя не может быть пустым-->
+<!--        </span>-->
+<!--      </span>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--      <input-->
+<!--        type="file"-->
+<!--        (change)="onFileUpload($event)"-->
+<!--        class="dn"-->
+<!--        #input-->
+<!--      >-->
+<!--      <button-->
+<!--        class="waves-effect waves-light btn orange lighten-2 mb2"-->
+<!--        type="button"-->
+<!--        (click)="triggerClick()"-->
+<!--        [disabled]="form.disabled"-->
+<!--      >-->
+<!--        <i class="material-icons left">backup</i>-->
+<!--        Загрузить изображение-->
+<!--      </button>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--      <button-->
+<!--        class="waves-effect waves-light btn"-->
+<!--        type="submit"-->
+<!--        [disabled]="form.invalid || form.disabled"-->
+<!--      >-->
+<!--        Сохранить-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </form>-->
+
+<!--  <div class="col s12 l4 center">-->
+<!--    <img-->
+<!--      class="responsive-img h200"-->
+<!--      *ngIf="imagePreview"-->
+<!--      [src]="imagePreview"-->
+<!--    >-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<app-positions-form-->
+<!--  *ngIf="category?._id"-->
+<!--  [categoryId]="category._id"-->
+<!--&gt;</app-positions-form>-->

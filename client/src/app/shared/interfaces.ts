@@ -1,4 +1,5 @@
 export interface User {
+  _id?: string
   email: string,
   password: string
 }
@@ -8,8 +9,16 @@ export interface Message {
 }
 
 export interface Category {
-  name: string
-  imageSrc?: string
-  user?: string
   _id?: string
+  imageSrc?: string
+  name: string
+  user?: string
+}
+
+export interface Position {
+  _id?: string
+  cost: number
+  name: string
+  category: string
+  user?: string
 }

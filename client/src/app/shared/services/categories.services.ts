@@ -15,7 +15,7 @@ export class CategoriesService{
   }
 
   getById(id: string) : Observable<Category>{
-    return this.http.get<Category>(`api/category/${id}`)
+    return this.http.get<Category>(`/api/category/${id}`)
   }
 
   create(name: string, image?: File): Observable<Category>{
@@ -26,7 +26,7 @@ export class CategoriesService{
     }
     fd.append('name', name)
 
-    return this.http.post<Category>('api/category', fd)
+    return this.http.post<Category>('/api/category', fd)
   }
 
   update(id: string, name: string, image?: File): Observable<Category>{
@@ -37,7 +37,7 @@ export class CategoriesService{
     }
     fd.append('name', name)
 
-    return this.http.patch<Category>(`api/category/${id}`, fd)
+    return this.http.patch<Category>(`/api/category/${id}`, fd)
   }
 
   delete(id: string): Observable<Message>{
