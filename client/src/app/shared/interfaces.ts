@@ -1,3 +1,5 @@
+//import {appendFile} from "fs";
+
 export interface User {
   _id?: string
   email: string,
@@ -37,4 +39,10 @@ export interface OrderPosition {
   cost: number
   quantity: number
   _id?: string
+}
+
+export interface Filter {
+  start?: Date
+  end?: Date
+  order?: number
 }
