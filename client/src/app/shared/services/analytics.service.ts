@@ -7,6 +7,7 @@ import {AnalyticsPage, OverviewPage} from "../interfaces";
   providedIn: "root"
 })
 export class AnalyticsService {
+  [x: string]: any;
     constructor(private http: HttpClient){}
 
     getOverview(): Observable<OverviewPage>{
