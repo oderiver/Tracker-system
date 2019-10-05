@@ -1,7 +1,7 @@
 //для обработки запрсов клиента
-const express = require('express');
+const express = require('express')
+const controller = require('../controllers/position')
 const passport = require('passport')
-const controller = require('../controllers/position');
 const router = express.Router();
 
 router.get('/:categoryId', passport.authenticate('jwt', {session: false}), controller.getByCategoryId)
@@ -10,4 +10,4 @@ router.patch('/:id', passport.authenticate('jwt', {session: false}), controller.
 router.delete('/:id', passport.authenticate('jwt', {session: false}), controller.remove)
 
 
-module.exports = router;
+module.exports = router

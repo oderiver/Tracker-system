@@ -70,7 +70,6 @@ export class AnalyticsPageComponent implements AfterViewInit, OnDestroy {
       color: 'rgb(54, 162, 235)'
     }
 
-    //this.analyticsService.fetchAnalytics().subscribe((data: AnalyticsPage) => {
     this.aSub = this.service.getAnalytics().subscribe((data: AnalyticsPage) => {
       this.average = data.average
 

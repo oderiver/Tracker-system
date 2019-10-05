@@ -29,7 +29,7 @@ module.exports.login = async function (req, res) {
         }
     } else {
         //пользователя нет, ошибка
-        req.status(404).json({
+        res.status(404).json({
             message: 'Пользователь с таким email не задан'
         })
     }
@@ -40,15 +40,13 @@ module.exports.register = async function (req, res) {
     const candidate = await User.findOne({email: req.body.email})   //поиск совпадения
 
     if(candidate){
-        res.status(409).json({
-            message: 'Такой пользователь зарегистрирован'
-        })
+        res.status(409).json({message: 'Такой пользователь зарегистрирован'})
     } else {
         const salt = bcrypt.genSaltSync(10)
-        const password = req.body.passwords
+        //const password = req.body.passwords
         const user = new User({
             email: req.body.email,
-            password: bcrypt.hashSync(password, salt)
+            password: bcrypt.hashSync(req.body.password, salt)
         })
         try {
             await user.save()
